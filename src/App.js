@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Navbar, ProductList, Details, Cart, Default, PageNotFound } from './components';
 
 
-
 function App() {
   return (
    
