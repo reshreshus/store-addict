@@ -9,6 +9,7 @@ class ProductProvider extends Component {
     state = {
         products: [],
         detailProduct,
+        cart: []
     }
 
     componentDidMount() {
@@ -27,14 +28,34 @@ class ProductProvider extends Component {
         })
     }
 
+    getItem = id => {
+        return this.state.products.find(item => item.id === id);
+    }
 
+    handleDetail = (id) => {
+         const product = this.getItem(id);
+         this.setState(()=>{
+             return {detailProduct: product}
+         });
 
-    handleDetail = () => {
-        console.log('hello from handle detail');
     };
     
     addToCart = (id) => {
         console.log(`hello from add to cart. id: ${id}`);
+
+        let tempProducts = [...this.state.products];
+
+        // went with thing indexOf in order for the product to remain in the same place
+        const index = tempProducts.indexOf(this.getItem(id));
+
+        const product = tempProducts[index];
+        product.inCart = true;
+        product.count = 1;
+        product.total = product.price;
+
+        this.setState(() => {
+            return {products: tempProducts, cart: [...this.state.cart, product]}
+        }, ()=> console.log(this.state));
     };
 
     render() {
