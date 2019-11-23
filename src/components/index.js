@@ -25,3 +25,7 @@ export {
 export {
     default as Default
 } from './Default';
+
+export {
+    default as Model
+} from './Model';

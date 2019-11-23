@@ -9,7 +9,13 @@ class ProductProvider extends Component {
     state = {
         products: [],
         detailProduct,
-        cart: []
+        cart: [],
+        modelOpen: false,
+        modelProduct: detailProduct,
+
+        cartSubTotal: 0,
+        cartTax: 0,
+        cartTotal:  0
     }
 
     componentDidMount() {
@@ -39,6 +45,25 @@ class ProductProvider extends Component {
          });
 
     };
+
+    increment = id => {
+
+    }
+
+    decrement = id => {
+
+    }
+
+    removeItemFromCart = id => {
+
+    }
+
+    clearCart = () => {
+        console.log("cart was cleared");
+    }
+
+
+
     
     addToCart = (id) => {
         console.log(`hello from add to cart. id: ${id}`);
@@ -56,14 +81,36 @@ class ProductProvider extends Component {
         this.setState(() => {
             return {products: tempProducts, cart: [...this.state.cart, product]}
         }, ()=> console.log(this.state));
+
+
     };
+
+    openModel = id => {
+        const product = this.getItem(id);
+        this.setState(()=> {
+            return {
+                modelProduct: product,
+                modelOpen: true
+            };
+        });
+    }
+
+    closeModel = () => {
+        this.setState(() => {
+            return {
+                modelOpen: false
+            };
+        });
+    }
 
     render() {
         return (
             <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail: this.handleDetail,
-                addToCart: this.addToCart
+                addToCart: this.addToCart,
+                openModel: this.openModel,
+                closeModel: this.closeModel
             }}>
                 {this.props.children}
             </ProductContext.Provider>

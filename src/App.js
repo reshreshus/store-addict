@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route} from 'react-router-dom';
-import {Navbar, ProductList, Details, Cart, Default, PageNotFound } from './components';
+import {Navbar, ProductList, Details, Cart, Default, PageNotFound, Model } from './components';
 
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Route path="/cart" exact component={Cart}/>
         <Route  component={PageNotFound}/>
       </Switch>
+      <Model />
     </React.Fragment>
   );
 }
