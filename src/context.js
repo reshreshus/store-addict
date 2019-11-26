@@ -9,7 +9,7 @@ class ProductProvider extends Component {
     state = {
         products: [],
         detailProduct,
-        cart: [],
+        cart: storeProducts,
         modelOpen: false,
         modelProduct: detailProduct,
 
@@ -51,15 +51,15 @@ class ProductProvider extends Component {
     }
 
     decrement = id => {
-
+        console.log("decrement");
     }
 
     removeItemFromCart = id => {
-
+        console.log("item removed");
     }
 
     clearCart = () => {
-        console.log("cart was cleared");
+        console.log("cart was cleared"); 
     }
 
 
@@ -110,7 +110,11 @@ class ProductProvider extends Component {
                 handleDetail: this.handleDetail,
                 addToCart: this.addToCart,
                 openModel: this.openModel,
-                closeModel: this.closeModel
+                closeModel: this.closeModel,
+                decrement: this.decrement,
+                increment: this.increment,
+                removeItemFromCart: this.removeItemFromCart,
+                clearCart: this.clearCart
             }}>
                 {this.props.children}
             </ProductContext.Provider>
